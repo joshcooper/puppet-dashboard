@@ -1,0 +1,46 @@
+- if local_assigns[:nodes].length > 0 then
+  %table
+    %thead
+      %tr
+        %th
+        %th(colspan="4")
+          Resources
+      %tr
+        %th
+        %th
+          All
+        %th
+          Failed
+        %th
+          Pending
+        %th
+          Successful
+    %tbody
+      - r = local_assigns[:nodes].collect{|n| n.last_apply_report }
+      %tr
+        - s = r.collect{|x| x.resource_statuses }.flatten
+        %th
+          Total
+        %th
+          = s.length
+        %th
+          = s.select{|x| x.failed }.length
+        %th
+          REVISIT
+        %th
+          = s.reject{|x| x.failed }.length
+      - r.each do |report|
+        - s = r.resource_statuses
+        %tr
+          %td
+            = r.node.name
+          %td
+            = s.length
+          %td
+            = s.select{|x| x.failed}.length
+          %td
+            &mdash;
+          %td
+            = s.reject{|x| x.failed}.length
+- else
+  &mdash; No nodes matching &mdash;

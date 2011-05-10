@@ -3,6 +3,28 @@
   .header
     %h2 Dashboard
   .item
+    %ul#home-tabs
+      %li(id="all-tab")
+        All
+      %li(id="failed-tab")
+        Failed
+      %li(id="pending-tab")
+        Pending
+      %li(id="unresponsive-tab")
+        Unresponsive
+      %li(id="compliant-tab")
+        Compliant
+      %div.panel(id="all")
+        = render 'resource_summary', :nodes => @unhidden_nodes
+      %div.panel(id="failed")
+        = render 'resource_summary', :nodes => @currently_failing_nodes
+      %div.panel(id="pending")
+        = render 'resource_summary', :nodes => []
+      %div.panel(id="unresponsive")
+        = render 'resource_summary', :nodes => @no_longer_reporting_nodes
+      %div.panel(id="compliant")
+        = render 'resource_summary', :nodes => []
+  .item
     - if @currently_failing_nodes.present?
       .section.error
         %h3 Node failures

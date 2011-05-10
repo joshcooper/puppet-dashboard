@@ -523,8 +523,8 @@ body {
     }
   }
 
-  &.reports_show_action {
-    #report-tabs {
+  &.reports_show_action, &.pages_home_action {
+    #report-tabs, #home-tabs {
       display: none;
       font: bold 14px Arial;
       float: left;
