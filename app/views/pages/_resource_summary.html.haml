@@ -30,10 +30,10 @@
         %th
           = s.reject{|x| x.failed }.length
       - r.each do |report|
-        - s = r.resource_statuses
+        - s = report.resource_statuses
         %tr
           %td
-            = r.node.name
+            = report.node.name
           %td
             = s.length
           %td
